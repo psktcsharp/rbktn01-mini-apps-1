@@ -27,7 +27,6 @@ class TicGame {
             }
             document.getElementById(buttonId).disabled = true;
         }
-
         //console.log("something clicked !",buttonId,this.currentPlayer)
         if (this.winnerCheck() === true) {
             document.getElementById("gameStateLabel").innerText = "PLAYER O WON !! GG"
@@ -65,9 +64,7 @@ class TicGame {
             if (rows[j].cells[i].childNodes[0].innerText != "⬛") { filledCounter++; }
             if (filledCounter === 9) { return true }
         }
-
     }
-
         return false;
     }
     //check if someone won, by hard coding all possible win scenarios and check agianst it
@@ -100,9 +97,6 @@ class TicGame {
         if (resultArray[0] === "O" && resultArray[3] === "O" && resultArray[6] === "O") { return true }
         if (resultArray[1] === "O" && resultArray[4] === "O" && resultArray[7] === "O") { return true }
         if (resultArray[2] === "O" && resultArray[5] === "O" && resultArray[8] === "O") { return true }
-
-
-
         console.log(resultArray)
         return null;
     }
