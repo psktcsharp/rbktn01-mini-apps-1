@@ -38,8 +38,11 @@ class TicGame {
             document.getElementById("gameStateLabel").style.background = "gold"
             this.gameEnded()
         }
-        console.log(this.endGameCheck())
-        console.log()
+        if(this.endGameCheck()){
+            document.getElementById("gameStateLabel").innerText = "IT'S A TIE !! GG"
+            document.getElementById("gameStateLabel").style.background = "gray"
+            this.gameEnded()
+        }
     }
     //end the game disabling all button
     gameEnded(){
