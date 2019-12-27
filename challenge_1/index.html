@@ -1,27 +1,41 @@
 <html>
-    <head>
-        <script src="app.js"></script>
-    </head>
-    <body >
-       
-    <table id="gameTable" style="width: 35%;height: 35%; text-align: center; background-color: slategray;" >
-        <tr id="firstRow" >
-            <td><button id="b11" style="width: 85%;height: 85%;color: cornsilk;" onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
-            <td><button id="b12" style="width: 85%;height: 85%;color: cornsilk;" onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
-            <td><button id="b13" style="width: 85%;height: 85%;color: cornsilk;" onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
-        </tr>
-        <tr id="2ndRow" >
-            <td><button id="b21"  style="width: 85%;height: 85%;color: cornsilk;" onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
-            <td><button id="b22"  style="width: 85%;height: 85%;color: cornsilk;" onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
-            <td><button id="b23"  style="width: 85%;height: 85%;color: cornsilk;" onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
-        </tr>
-        <tr id="3rdRow" >
-            <td><button id="b31"  style="width: 85%;height: 85%;color: cornsilk;" onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
-            <td><button id="b32"  style="width: 85%;height: 85%;color: cornsilk;" onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
-            <td><button id="b33"  style="width: 85%;height: 85%;color: cornsilk;" onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
-        </tr>
-    </table>
-    <label id="gameStateLabel" style="width: 85%;height: 85%;color: white;background-color: crimson;font-size:35pt;">Player X turn</label>
-    </body>
-</html>
 
+<head>
+    <script src="app.js"></script>
+</head>
+
+<body>
+    <div id="divHolder" >
+        <table id="gameTable" style="width: 35%;height: 35%; text-align: center; background-color: slategray;">
+            <tr id="firstRow">
+                <td><button id="b11" style="width: 85%;height: 85%;color: cornsilk; max-width: 100px;"
+                        onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
+                <td><button id="b12" style="width: 85%;height: 85%;color: cornsilk;max-width: 100px;"
+                        onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
+                <td><button id="b13" style="width: 85%;height: 85%;color: cornsilk;max-width: 100px;"
+                        onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
+            </tr>
+            <tr id="2ndRow">
+                <td><button id="b21" style="width: 85%;height: 85%;color: cornsilk;max-width: 100px;"
+                        onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
+                <td><button id="b22" style="width: 85%;height: 85%;color: cornsilk;max-width: 100px;"
+                        onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
+                <td><button id="b23" style="width: 85%;height: 85%;color: cornsilk;max-width: 100px;"
+                        onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
+            </tr>
+            <tr id="3rdRow">
+                <td><button id="b31" style="width: 85%;height: 85%;color: cornsilk;max-width: 100px;"
+                        onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
+                <td><button id="b32" style="width: 85%;height: 85%;color: cornsilk;max-width: 100px;"
+                        onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
+                <td><button id="b33" style="width: 85%;height: 85%;color: cornsilk;max-width: 100px;"
+                        onclick="newGame.onPlayerClick(id,newGame.currentPlayer)"></button></td>>
+            </tr>
+        </table>
+        <label id="gameStateLabel"
+            style="width: 85%;height: 85%;color: white;background-color: crimson;font-size:35pt;">Player X turn</label>
+        <button id="resetButton" style="width: 150px;height: 150px;color: red;" onclick="newGame.resetGame()">Reset
+            Game</button>
+</body>
+
+</html>
