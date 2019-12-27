@@ -9,7 +9,7 @@ class TicGame {
     //handle palyer click, determin what button clicked and who clicked it
     onPlayerClick(buttonId, player) {
         //check no one clicked it already 
-        if (document.getElementById(buttonId).innerText === "") {
+        if (document.getElementById(buttonId).innerText === "⬛") {
             //based on current player do x or o
             if (this.currentPlayer) {
                 document.getElementById(buttonId).innerText = "O"
@@ -64,15 +64,15 @@ class TicGame {
         //if that counter exceeds 9 return true
         var filledCounter = 0;
         for (var i = 0; i < 3; i++) {
-            if (rows[0].cells[i].childNodes[0].innerText != "") { filledCounter++; }
+            if (rows[0].cells[i].childNodes[0].innerText != "⬛") { filledCounter++; }
             if (filledCounter === 9) { return true }
         }
         for (var i = 0; i < 3; i++) {
-            if (rows[1].cells[i].childNodes[0].innerText != "") { filledCounter++; }
+            if (rows[1].cells[i].childNodes[0].innerText != "⬛") { filledCounter++; }
             if (filledCounter === 9) { return true }
         }
         for (var i = 0; i < 3; i++) {
-            if (rows[2].cells[i].childNodes[0].innerText != "") { filledCounter++; }
+            if (rows[2].cells[i].childNodes[0].innerText != "⬛") { filledCounter++; }
             if (filledCounter === 9) { return true }
         }
 
