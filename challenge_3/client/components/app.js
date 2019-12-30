@@ -18,32 +18,17 @@ var F1 = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (F1.__proto__ || Object.getPrototypeOf(F1)).call(this, props));
 
     _this.state = {
-      showF1: 'inline',
+      showCheckout: 'inline',
+      showF1: 'none',
       showF2: 'none',
       showF3: 'none',
       showReport: 'none',
       //object to collect data on state change
-      data: {
-        //not needed since data will be created upon state change
-        // name:"",
-        // email:"",
-        // password:"",
-        // line1:"",
-        // line2:"",
-        // city:"",
-        // state:"",
-        // zip:"",
-        // phone:"",
-        // creditCardNo:"",
-        // expiryDate:"",
-        // billingZip:"",
-        // cvv:""
-      },
-      reportArray: []
+      data: {}
     };
 
     _this.next = _this.next.bind(_this);
-
+    _this.sendData = _this.sendData.bind(_this);
     _this.handleChange = _this.handleChange.bind(_this);
     return _this;
   }
@@ -70,9 +55,15 @@ var F1 = function (_React$Component) {
       switch (stepCounter) {
         case 0:
           console.log(this.state.name);
+          //send to server on checkout click
+          $.post("http://localhost:3000", this.state.data).done(function (data) {
+            console.log(data);
+          });
           this.setState({
-            showF1: 'none',
-            showF2: 'inline',
+            //start toggling the display for the steps
+            showCheckout: 'none',
+            showF1: 'inline',
+            showF2: 'none',
             showF3: 'none',
             showReport: 'none'
           });
@@ -80,6 +71,17 @@ var F1 = function (_React$Component) {
           break;
         case 1:
           this.setState({
+            showCheckout: 'none',
+            showF1: 'none',
+            showF2: 'inline',
+            showF3: 'none',
+            showReport: 'none'
+          });
+          stepCounter++;
+          break;
+        case 2:
+          this.setState({
+            showCheckout: 'none',
             showF1: 'none',
             showF2: 'none',
             showF3: 'inline',
@@ -87,17 +89,23 @@ var F1 = function (_React$Component) {
           });
           stepCounter++;
           break;
-        case 2:
+        case 3:
           this.setState({
+            showCheckout: 'none',
             showF1: 'none',
             showF2: 'none',
             showF3: 'none',
             showReport: 'inline'
           });
-          break;
         default:
 
       }
+    }
+  }, {
+    key: 'sendData',
+    value: function sendData() {
+      var response = axios.get("http://localhost:3000/", { headers: { 'Content-Type': 'application/json' } });
+      console.log(response.data);
     }
   }, {
     key: 'render',
@@ -107,6 +115,11 @@ var F1 = function (_React$Component) {
       var HTML = React.createElement(
         'form',
         { onSubmit: this.next },
+        React.createElement(
+          'div',
+          { id: 'checkout', style: { display: this.state.showCheckout } },
+          React.createElement('input', { type: 'submit', value: 'Checkout', onClick: this.next })
+        ),
         React.createElement(
           'div',
           { id: 'step 1', style: { display: this.state.showF1 } },

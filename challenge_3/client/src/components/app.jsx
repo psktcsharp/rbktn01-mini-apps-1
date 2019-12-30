@@ -6,32 +6,17 @@ class F1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showF1: 'inline',
+      showCheckout: 'inline',
+      showF1: 'none',
       showF2: 'none',
       showF3: 'none',
       showReport: 'none',
       //object to collect data on state change
-      data: {
-        //not needed since data will be created upon state change
-        // name:"",
-        // email:"",
-        // password:"",
-        // line1:"",
-        // line2:"",
-        // city:"",
-        // state:"",
-        // zip:"",
-        // phone:"",
-        // creditCardNo:"",
-        // expiryDate:"",
-        // billingZip:"",
-        // cvv:""
-      },
-      reportArray: []
+      data: {}
     };
 
     this.next = this.next.bind(this)
-
+    this.sendData = this.sendData.bind(this)
     this.handleChange = this.handleChange.bind(this);
   }
   //handle change in input value
@@ -52,9 +37,16 @@ class F1 extends React.Component {
     switch (stepCounter) {
       case 0:
         console.log(this.state.name)
+          //send to server on checkout click
+          $.post( "http://localhost:3000", this.state.data)
+  .done(function( data ) {
+    console.log(data)
+  });
         this.setState({
-          showF1: 'none',
-          showF2: 'inline',
+        //start toggling the display for the steps
+          showCheckout: 'none',
+          showF1: 'inline',
+          showF2: 'none',
           showF3: 'none',
           showReport: 'none'
         })
@@ -62,6 +54,17 @@ class F1 extends React.Component {
         break;
       case 1:
         this.setState({
+          showCheckout: 'none',
+          showF1: 'none',
+          showF2: 'inline',
+          showF3: 'none',
+          showReport: 'none'
+        })
+        stepCounter++
+        break;
+      case 2:
+        this.setState({
+          showCheckout: 'none',
           showF1: 'none',
           showF2: 'none',
           showF3: 'inline',
@@ -69,21 +72,31 @@ class F1 extends React.Component {
         })
         stepCounter++
         break;
-      case 2:
-        this.setState({
-          showF1: 'none',
-          showF2: 'none',
-          showF3: 'none',
-          showReport: 'inline'
-        })
-        break;
+        case 3:
+          this.setState({
+            showCheckout: 'none',
+            showF1: 'none',
+            showF2: 'none',
+            showF3: 'none',
+            showReport: 'inline'
+          })
       default:
 
     }
   }
-
+    sendData(){
+    const response =
+      axios.get("http://localhost:3000/",
+        { headers: {'Content-Type': 'application/json'}}
+      )
+    console.log(response.data)
+  }
+  
   render() {
     const HTML = (<form onSubmit={this.next} >
+      <div id="checkout" style={{ display: this.state.showCheckout }}>
+      <input type="submit" value="Checkout" onClick={this.next} />
+      </div>
       <div id="step 1" style={{ display: this.state.showF1 }} >
         <label>
           Name:
@@ -93,7 +106,7 @@ class F1 extends React.Component {
           Email:
               <input type="text" value={this.state.data.email} onChange={this.handleChange} name="email" />
         </label>
-        <label>
+        <label> 
           Password:
               <input type="text" value={this.state.data.password} onChange={this.handleChange} name="password" />
         </label>
